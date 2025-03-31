@@ -16,3 +16,11 @@ class registrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[
         DataRequired(), EqualTo('password', message='Passwords must match')])
     submit = SubmitField('Register')
+
+class uploadForm(FlaskForm):
+    datafile = FileField('Choose a CSV file', validators=[
+        DataRequired(),
+        FileAllowed(['csv'], 'CSV files only!')
+    ])
+    separator = StringField('Separator (e.g., "," or ";")', default=",", validators=[DataRequired()])
+    submit = SubmitField('Upload Dataset')

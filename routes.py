@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from .forms import loginForm, registrationForm, UploadForm
+from .forms import loginForm, registrationForm, uploadForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import db, User
 
@@ -54,10 +54,20 @@ def registration():
 def show_docs():
     return render_template('documentation.html')
 
-@main_routes.route('/dashboard')
+@main_routes.route('/dashboard', methods=['GET', 'POST'])
 def show_dashboard():
     if 'user_id' not in session:
         flash('Please log in to access your dashboard.', 'warning')
         return redirect(url_for('main_routes.login'))
+
     user = User.query.get(session['user_id'])
-    return render_template('dashboard.html', user=user)
+    upload_form = uploadForm()
+
+    if upload_form.validate_on_submit():
+        file = upload_form.datafile.data
+        sep = upload_form.separator.data
+        # You can parse the CSV file with pandas here
+        flash('File uploaded successfully!', 'success')
+        return redirect(url_for('main_routes.show_dashboard'))
+
+    return render_template('dashboard.html', user=user, upload_form=upload_form)

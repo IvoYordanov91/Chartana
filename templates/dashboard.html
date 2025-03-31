@@ -1,7 +1,52 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block title %}Dashboard | Chartana{% endblock %}
 
 {% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
 
+            <!-- Greeting -->
+            <div class="alert alert-primary text-center" role="alert">
+                Welcome back, <strong>{{ user.name }}</strong>! Ready to explore your data?
+            </div>
+
+            <!-- Upload upload_form Card -->
+            <div class="card">
+                <div class="card-header">
+                    Upload a New Dataset
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {{ upload_form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ upload_form.datafile.label(class="form-label") }}
+                            {{ upload_form.datafile(class="form-control") }}
+                            {% if upload_form.datafile.errors %}
+                                <div class="text-danger">
+                                    {% for error in upload_form.datafile.errors %}
+                                        <p>{{error}}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            {{ upload_form.separator.label(class="form-label") }}
+                            {{ upload_form.separator(class="form-control", placeholder="e.g. , or ;") }}
+                            {% if upload_form.separator.errors %}
+                                <div class="text-danger">
+                                    {% for error in upload_form.separator.errors %}
+                                        <p>{{error}}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {{ upload_form.submit(class="btn btn-primary") }}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

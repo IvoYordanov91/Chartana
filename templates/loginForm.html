@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div>
+    <form method="POST">
+        {{ login_form.hidden_tag() }}
+        <div class="form-group">
+            {{ login_form.email.label(class="form-label") }}
+            {{ login_form.email(class="form-control") }}
+            {% if login_form.email.errors %}
+                <div class="text-danger">
+                    {% for error in login_form.email.errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ login_form.password.label(class="form-label") }}
+            {{ login_form.password(class="form-control") }}
+            {% if login_form.password.errors %}
+                <div class="text-danger">
+                    {% for error in login_form.password.errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        {{ login_form.submit(class="btn btn-info btn-block") }}
+    </form>
+</div>
+
+{% endblock %}

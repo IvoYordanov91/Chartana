@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<div>
+    <form method="POST">
+        {{ registration_form.hidden_tag() }}
+        <div class="form-group">
+            {{ registration_form.name.label(class="form-label") }}
+            {{ registration_form.name(class="form-control") }}
+            {% if registration_form.name.errors %}
+                <div class="text-danger">
+                    {% for error in registration_form.name.errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ registration_form.email.label(class="form-label") }}
+            {{ registration_form.email(class="form-control") }}
+            {% if registration_form.email.errors %}
+                <div class="text-danger">
+                    {% for error in registration_form.email.errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ registration_form.date_birth.label(class="form-label") }}
+            {{ registration_form.date_birth(class="form-control") }}
+            {% if registration_form.date_birth.errors %}
+                <div class="text-danger">
+                    {% for error in registration_form.date_birth.errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ registration_form.password.label(class="form-label") }}
+            {{ registration_form.password(class="form-control") }}
+            {% if registration_form.password.errors %}
+                <div class="text-danger">
+                    {% for error in registration_form.password.errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ registration_form.confirm_password.label(class="form-label") }}
+            {{ registration_form.confirm_password(class="form-control") }}
+            {% if registration_form.confirm_password.errors %}
+                <div class="text-danger">
+                    {% for error in registration_form.confirm_password.errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        {{ registration_form.submit(class="btn btn-info btn-block") }}
+    </form>
+</div>
+
+
+{% endblock %}

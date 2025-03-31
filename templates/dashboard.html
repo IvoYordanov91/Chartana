@@ -50,7 +50,20 @@
                             {{ preview | safe }}
                         </div>
                     {% endif %}
-                </div>
+                    {% if null_counts %}
+                        <hr>
+                        <h4>Missing Data by Column</h4>
+                        <div class="table-responsive">
+                            {{ null_counts | safe }}
+                        </div>
+                    {% endif %}
+                    {% if duplicate_counts %}
+                        <hr>
+                        <h4>Duplicate Values by Column</h4>
+                        <div class="table-responsive">
+                            {{ duplicate_counts | safe }}
+                        </div>
+                    {% endif %}
             </div>
 
         </div>

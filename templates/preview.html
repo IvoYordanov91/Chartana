@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Data Preview | Chartana{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Data Preview</h2>
+
+    {% if preview %}
+        <h4 class="mt-4">First 5 Rows</h4>
+        <div class="table-responsive">{{ preview | safe }}</div>
+    {% endif %}
+
+    {% if null_counts %}
+        <h4 class="mt-4">Missing Values by Column</h4>
+        <div class="table-responsive">{{ null_counts | safe }}</div>
+    {% endif %}
+
+    {% if duplicate_counts %}
+        <h4 class="mt-4">Duplicate Values by Column</h4>
+        <div class="table-responsive">{{ duplicate_counts | safe }}</div>
+    {% endif %}
+
+    <a href="{{ url_for('main_routes.show_dashboard') }}" class="btn btn-outline-secondary mt-4">Upload Another File</a>
+    <div class="mt-4 text-end">
+        <a href="{{ url_for('main_routes.data_cleanup') }}" class="btn btn-primary">
+            ➜ To Data Cleanup
+        </a>
+    </div>
+{% endblock %}

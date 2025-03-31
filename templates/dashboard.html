@@ -43,6 +43,13 @@
                         </div>
                         {{ upload_form.submit(class="btn btn-primary") }}
                     </form>
+                    {% if preview %}
+                        <hr>
+                        <h4>Data Preview (first 5 rows)</h4>
+                        <div class="table-responsive">
+                            {{ preview | safe }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 

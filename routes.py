@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from .forms import loginForm, registrationForm, uploadForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import db, User
+from .utils.preprocessing import parse_csv
 
 main_routes = Blueprint('main_routes', __name__)
 
@@ -66,8 +67,13 @@ def show_dashboard():
     if upload_form.validate_on_submit():
         file = upload_form.datafile.data
         sep = upload_form.separator.data
-        # You can parse the CSV file with pandas here
-        flash('File uploaded successfully!', 'success')
-        return redirect(url_for('main_routes.show_dashboard'))
+        #Preprocess csv file
+        try:
+            df = parse_csv(file.stream, sep)
+            preview = df.head().to_html(classes='table table-bordered table-striped', index=False)
+            flash('File uploaded and parsed successfully.', 'success')
+            return render_template('dashboard.html', user=user, upload_form=upload_form, preview=preview)
+        except Exception as e:
+            flash(str(e), 'danger')
 
     return render_template('dashboard.html', user=user, upload_form=upload_form)

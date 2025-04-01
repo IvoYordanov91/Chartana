@@ -11,6 +11,14 @@
                 Welcome back, <strong>{{ user.name }}</strong>! Ready to explore your data?
             </div>
 
+            <div class="text-center my-4">
+                <h2>Previous Analysis</h2>
+                <button type="button" class="btn btn-info shadow-lg px-4 py-2 fs-5 rounded-pill" data-bs-toggle="modal" data-bs-target="#analysisModal">
+                🧠 Marketing Campaigns data
+                </button>
+            </div>
+
+
             <!-- Upload upload_form Card -->
             <div class="card">
                 <div class="card-header">
@@ -67,6 +75,818 @@
             </div>
 
         </div>
+        <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="analysisModalLabel">📊 Campaign Data Insights</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs mb-3" id="analysisTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="cleanup-tab" data-bs-toggle="tab" data-bs-target="#cleanup" type="button" role="tab">🧹 Data Cleanup</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="analysis-tab" data-bs-toggle="tab" data-bs-target="#analysis" type="button" role="tab">📈 Analysis</button>
+                    </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="recommend-tab" data-bs-toggle="tab" data-bs-target="#recommend" type="button" role="tab">💡 Recommendations</button>
+                        </li>
+                    </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="analysisTabContent">
+                    <div class="tab-pane fade show active" id="cleanup" role="tabpanel">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                            🗃️ <strong>Duplicates Removed:</strong> Both perfect and near-duplicate campaigns were identified and removed based on campaign name, dates, and other fields.
+                            <h6 class="mt-4">🗃️ Sample of Corrected Duplicate Campaigns</h6>
+                            <div class="table-responsive">
+                            <table class="table table-striped table-sm table-bordered align-middle">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>Campaign Name</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Budget</th>
+                                    <th>ROI</th>
+                                    <th>Type</th>
+                                    <th>Audience</th>
+                                    <th>Channel</th>
+                                    <th>Conversion</th>
+                                    <th>Revenue</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Public-key multi-tasking throughput</td>
+                                    <td>2023-04-01</td>
+                                    <td>2024-02-23</td>
+                                    <td>8082.30</td>
+                                    <td>0.35</td>
+                                    <td>email</td>
+                                    <td>B2B</td>
+                                    <td>organic</td>
+                                    <td>0.40</td>
+                                    <td>709593.48</td>
+                                </tr>
+                                <tr>
+                                    <td>De-engineered analyzing task-force</td>
+                                    <td>2023-02-15</td>
+                                    <td>2024-04-22</td>
+                                    <td>17712.98</td>
+                                    <td>0.74</td>
+                                    <td>email</td>
+                                    <td>B2C</td>
+                                    <td>promotion</td>
+                                    <td>0.66</td>
+                                    <td>516609.10</td>
+                                </tr>
+                                <tr>
+                                    <td>Balanced solution-oriented Local Area Network</td>
+                                    <td>2022-12-20</td>
+                                    <td>2023-10-11</td>
+                                    <td>84643.10</td>
+                                    <td>0.37</td>
+                                    <td>podcast</td>
+                                    <td>B2B</td>
+                                    <td>paid</td>
+                                    <td>0.28</td>
+                                    <td>458227.42</td>
+                                </tr>
+                                <tr>
+                                    <td>Distributed real-time methodology</td>
+                                    <td>2022-09-26</td>
+                                    <td>2023-09-27</td>
+                                    <td>14589.75</td>
+                                    <td>0.47</td>
+                                    <td>webinar</td>
+                                    <td>B2B</td>
+                                    <td>organic</td>
+                                    <td>0.19</td>
+                                    <td>89958.73</td>
+                                </tr>
+                                <tr>
+                                    <td>Front-line executive infrastructure</td>
+                                    <td>2023-07-07</td>
+                                    <td>2024-05-15</td>
+                                    <td>39291.90</td>
+                                    <td>0.30</td>
+                                    <td>social media</td>
+                                    <td>B2B</td>
+                                    <td>promotion</td>
+                                    <td>0.81</td>
+                                    <td>47511.35</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            </li>
+                            <li class="list-group-item">
+                            💰 <strong>Missing Budget & Revenue:</strong> Filled with <code>0</code> where appropriate (e.g., campaigns that had no activity).
+                            </li>
+                            <li class="list-group-item">
+                            ⚠️ <strong>Negative Values:</strong> Negative <code>budget</code> values were corrected to <code>0</code>. Negative or Null <code>ROI</code> values were flagged and replaced/recalculated if inconsistent.
+                            </li>
+                            <li class="list-group-item">
+                            📈 <strong>Outliers:</strong> Extremely high <code>budget</code> and <code>revenue</code> values were capped at the 99th percentile and flagged.
+                            </li>
+                            <li class="list-group-item">
+                            📅 <strong>Missing Dates:</strong> - Missing <code>start_date</code> and <code>end_date</code> values were filled using the earliest and latest known values in the dataset. Fully missing dates were flagged.
+                            </li>
+                            <li class="list-group-item">
+                            🔤 <strong>Target Audience Cleanup:</strong> Empty values assumed to target both B2B & B2C.
+                            </li>
+                            <li class="list-group-item">
+                            🚩 <strong>Flagging:</strong> Anomaly flags were added across several columns (e.g., ROI, revenue, dates) for transparency and auditability.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade" id="analysis" role="tabpanel">
+                        <h6 class="mt-3">📅 Data Coverage</h6>
+                        <p>From <strong>{{ min_date }}</strong> to <strong>{{ max_date }}</strong></p>
+
+                        <h6 class="mt-4">📊 Revenue, Budget & ROI by Channel</h6>
+                        <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-sm table-striped">
+                            <thead class="table-light">
+                            <tr>
+                                <th>Channel</th>
+                                <th>Total Budget</th>
+                                <th>Total Revenue</th>
+                                <th>Total Net Profit</th>
+                                <th>Average ROI</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in channel_summary %}
+                            <tr>
+                                <td>{{ row['channel'] }}</td>
+                                <td>{{ row['budget'] }}</td>
+                                <td>{{ row['revenue'] }}</td>
+                                <td>{{ row['net_profit'] }}</td>
+                                <td>{{ row['roi'] }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        </div>
+
+                        <h6 class="mt-4">🏆 Top Performing Channels</h6>
+                        <ul>
+                            <li>💸 Highest Net Profit: <strong>{{ top_profit_channel }}</strong> (<code>${{ top_profit_value }}</code>)</li>
+                            <li>📈 Highest ROI: <strong>{{ top_roi_channel }}</strong> (<code>{{ top_roi_value }}</code>)</li>
+                        </ul>
+
+                        <h6 class="mt-4">📊 KPI by Channel and Quarter</h6>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                            <label for="kpiSelector" class="form-label">Select KPI</label>
+                            <select id="kpiSelector" class="form-select">
+                                <option value="budget">Budget</option>
+                                <option value="revenue">Revenue</option>
+                                <option value="net_profit">Net Profit</option>
+                                <option value="roi">ROI</option>
+                            </select>
+                            </div>
+                            <div class="col-md-4">
+                            <label for="channelAdder" class="form-label">Select Channel</label>
+                            <select id="channelAdder" class="form-select">
+                                {% for ch in available_channels %}
+                                <option value="{{ ch }}">{{ ch }}</option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                            <button id="addChannelBtn" class="btn btn-success">➕ Add Channel</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Channels in Chart:</label>
+                            <div id="selectedChannels" class="d-flex flex-wrap gap-2"></div>
+                        </div>
+
+                        <canvas id="kpiChart" height="100"></canvas>
+
+                        <hr class="mt-5">
+                        <h6 class="mt-4">📋 Channel KPI Table (Quarterly)</h6>
+
+                        <div class="mb-3">
+                        <label for="quarterFilter" class="form-label">Filter by Quarter</label>
+                        <select id="quarterFilter" class="form-select">
+                            <option value="All">All Quarters</option>
+                            {% for row in quarterly_data %}
+                            {% if loop.first or row.quarter != loop.previtem.quarter %}
+                                <option value="{{ row.quarter }}">{{ row.quarter }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                        </div>
+
+                        <div class="table-responsive">
+                        <table class="table table-sm table-bordered" id="kpiTable">
+                            <thead class="table-light">
+                            <tr>
+                                <th>Quarter</th>
+                                <th>Channel</th>
+                                <th>Budget</th>
+                                <th>Revenue</th>
+                                <th>Net Profit</th>
+                                <th>ROI</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in quarterly_data %}
+                            <tr data-quarter="{{ row.quarter }}">
+                                <td>{{ row.quarter }}</td>
+                                <td>{{ row.channel }}</td>
+                                <td>{{ row.budget }}</td>
+                                <td>{{ row.revenue }}</td>
+                                <td>{{ row.net_profit }}</td>
+                                <td>{{ row.roi }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        </div>
+                        <h6 class="mt-4">📡 Campaign Distribution by Channel</h6>
+                        <canvas id="channelChart" height="100"></canvas>
+                        <h6 class="mt-5">🏅 Top 5 Campaigns by Quarter (Net Profit)</h6>
+
+                        <div class="mb-3">
+                        <label for="quarterTopSelector" class="form-label">Select Quarter</label>
+                        <select id="quarterTopSelector" class="form-select">
+                            {% for q in top_campaigns_by_quarter.keys() %}
+                            <option value="{{ q }}">{{ q }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+
+                        <canvas id="topCampaignsChart" height="100"></canvas>
+
+                        <div class="table-responsive mt-4">
+                        <table class="table table-sm table-bordered" id="topCampaignsTable">
+                            <thead>
+                            <tr>
+                                <th>Campaign Name</th>
+                                <th>Net Profit</th>
+                                <th>ROI</th>
+                                <th>Channel</th>
+                                <th>Type</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        </div>
+                        <h6 class="mt-5">😬 Bottom 5 Campaigns by Quarter (Net Loss)</h6>
+                        <div class="mb-3">
+                        <label for="quarterWorstSelector" class="form-label">Select Quarter</label>
+                        <select id="quarterWorstSelector" class="form-select w-auto d-inline-block">
+                            {% for q in worst_campaigns_by_quarter.keys() | sort %}
+                            <option value="{{ q }}">{{ q }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+
+                        <canvas id="worstCampaignsChart" height="100"></canvas>
+
+                        <div class="table-responsive mt-4">
+                        <table class="table table-sm table-bordered" id="worstCampaignsTable">
+                            <thead>
+                            <tr>
+                                <th>Campaign Name</th>
+                                <th>Net Profit</th>
+                                <th>ROI</th>
+                                <th>Channel</th>
+                                <th>Type</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="recommend" role="tabpanel">
+                        <ul>
+                        <li>⚠️ Review campaigns with zero ROI and positive spend</li>
+                        <li>🔍 Investigate anomalies with missing channel/type fields</li>
+                        <li>📈 Consider reallocating budget away from consistently loss-making types</li>
+                        <li>⏱️ Optimize campaign duration based on ROI trends (see below)</li>
+                        <li>📊 Some campaigns achieved excellent ROI on minimal budgets — focus on high-efficiency spend</li>
+                        </ul>
+
+                        <div class="mt-4">
+                        <h6>🕒 Campaign Duration vs ROI</h6>
+                        <p class="small text-muted">Shorter campaigns may yield higher ROI in some cases</p>
+                        <canvas id="durationRoiChart" height="100"></canvas>
+                        <ul>
+                        <li>📊 Our data shows that longer campaign durations do not correlate with higher ROI. In fact, ROI appears relatively flat across different campaign lengths — suggesting that duration alone is not a driver of performance.</li>
+                        <li>🔍We also removed a campaign with negative duration due to date inconsistencies — indicating good data hygiene is key for this analysis.</li>
+                        </ul>
+                        </div>
+                        <h6 class="mt-4">💡 Top 5 Most Efficient Campaigns (ROI per Dollar)</h6>
+                            <div class="table-responsive">
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Campaign</th>
+                                    <th>ROI</th>
+                                    <th>Budget ($)</th>
+                                    <th>ROI per $1k</th>
+                                    <th>Channel</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in top_efficiency %}
+                                <tr>
+                                    <td>{{ row.campaign_name }}</td>
+                                    <td>{{ row.roi }}</td>
+                                    <td>{{ row.budget }}</td>
+                                    <td>{{ row.roi_per_1000_dollars }}</td>
+                                    <td>{{ row.channel }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <p>🏆 We calculated ROI per $1,000 spent to surface campaigns that deliver the most return relative to their budget. Even small campaigns can outperform the big spenders when efficiency is measured in this way.</p>
+                            </div>
+                            <h6 class="mt-5">🎯 Channel Performance by Audience Type</h6>
+                            <canvas id="audienceChannelChart" height="100"></canvas>
+                            <ul class="mt-3">
+                                <li>🎯 <strong>Referral</strong> campaigns perform extremely well across both B2B and B2C.</li>
+                                <li>Referral campaigns that targeted both B2C and B2B audiences achieved the highest ROI (≈3.0), outperforming those aimed solely at B2C or B2B segments.</li>
+                                <li>🏆 <strong>Organic</strong> content is more effective for B2C audiences</li>
+                                <li>💼 <strong>Paid</strong> campaigns show better ROI in B2B settings</li>
+                                <li>⚖️ <strong>Promotion</strong> performs equally across both segments</li>
+                            </ul>
+                            <h6 class="mt-5">📈 Seasonal ROI Trends by Channel</h6>
+                            <div class="mb-3">
+                                <label for="channelSeasonSelect" class="form-label">Select Channel:</label>
+                                <select id="channelSeasonSelect" class="form-select w-auto d-inline-block">
+                                {% for ch in seasonality_by_channel | map(attribute='channel') | unique %}
+                                <option value="{{ ch }}">{{ ch }}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                            <canvas id="channelSeasonChart" height="100"></canvas>
+                        </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
     </div>
 </div>
+<script>
+const data = {{ quarterly_data | tojson }};
+const quarters = [...new Set(data.map(d => d.quarter))];
+const kpiSelector = document.getElementById('kpiSelector');
+const channelAdder = document.getElementById('channelAdder');
+const addChannelBtn = document.getElementById('addChannelBtn');
+const selectedChannelsDiv = document.getElementById('selectedChannels');
+const ctx = document.getElementById('kpiChart').getContext('2d');
+
+let chart;
+const selectedChannels = new Set();
+
+const colorPalette = [
+    '#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+];
+
+function getChannelData(channel, metric) {
+    return quarters.map(q => {
+    const match = data.find(d => d.quarter === q && d.channel === channel);
+    return match ? match[metric] : 0;
+    });
+}
+
+function updateChart() {
+    const metric = kpiSelector.value;
+    const datasets = Array.from(selectedChannels).map((channel, i) => ({
+    label: channel,
+    data: getChannelData(channel, metric),
+    backgroundColor: colorPalette[i % colorPalette.length],
+    borderColor: colorPalette[i % colorPalette.length],
+    borderWidth: 1
+    }));
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: quarters,
+        datasets
+    },
+    options: {
+        responsive: true,
+        plugins: {
+        title: {
+            display: true,
+            text: `${metric.toUpperCase()} Comparison`
+        },
+        legend: { position: 'top' }
+        },
+        scales: { y: { beginAtZero: true } }
+    }
+    });
+}
+
+function addChannel(channel) {
+    if (!selectedChannels.has(channel)) {
+    selectedChannels.add(channel);
+    const badge = document.createElement('span');
+    badge.className = 'badge bg-primary position-relative';
+    badge.textContent = channel;
+
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'btn-close btn-close-white btn-sm ms-2 position-absolute end-0 top-0 me-1 mt-1';
+    closeBtn.setAttribute('aria-label', 'Remove');
+    closeBtn.onclick = () => {
+        selectedChannels.delete(channel);
+        badge.remove();
+        updateChart();
+    };
+
+    badge.appendChild(closeBtn);
+    selectedChannelsDiv.appendChild(badge);
+    updateChart();
+    }
+}
+
+addChannelBtn.addEventListener('click', () => {
+    const channel = channelAdder.value;
+    addChannel(channel);
+});
+
+kpiSelector.addEventListener('change', updateChart);
+
+  // Optional: initialize with 1 channel
+addChannel(channelAdder.value);
+
+
+
+  // Filter quarterly table:
+const quarterFilter = document.getElementById('quarterFilter');
+const tableRows = document.querySelectorAll('#kpiTable tbody tr');
+
+quarterFilter.addEventListener('change', () => {
+    const selected = quarterFilter.value;
+    tableRows.forEach(row => {
+    const rowQuarter = row.getAttribute('data-quarter');
+    row.style.display = (selected === 'All' || rowQuarter === selected) ? '' : 'none';
+    });
+});
+
+  // Channel distribution chart:
+const channelData = {{ channel_distribution | tojson }};
+const channelLabels = channelData.map(row => row.channel);
+const channelCounts = channelData.map(row => row.count);
+
+new Chart(document.getElementById('channelChart'), {
+    type: 'pie',
+    data: {
+    labels: channelLabels,
+    datasets: [{
+        label: 'Number of Campaigns',
+        data: channelCounts,
+        backgroundColor: [
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)',
+        'rgba(255, 159, 64, 0.7)'
+        ],
+        borderWidth: 1
+    }]
+    },
+    options: {
+    responsive: true,
+    plugins: {
+        title: {
+        display: true,
+        text: 'Campaign Distribution by Channel'
+        },
+        legend: {
+        display: false
+        }
+    },
+    scales: {
+        y: {
+        beginAtZero: true,
+        ticks: { precision: 0 }
+        }
+    }
+    }
+});
+
+
+  // Top 5 campaigns per quarter chart
+const campaignsByQuarter = {{ top_campaigns_by_quarter | tojson }};
+const selector = document.getElementById('quarterTopSelector');
+const tableBody = document.querySelector('#topCampaignsTable tbody');
+const ctxTopCampaigns = document.getElementById('topCampaignsChart').getContext('2d');
+
+let chartTopCampaigns;
+
+function updateTopCampaignsView() {
+    const selectedQuarter = selector.value;
+    const data = campaignsByQuarter[selectedQuarter] || [];
+
+    // Table
+    tableBody.innerHTML = '';
+    data.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${row.campaign_name}</td>
+        <td>${row.net_profit}</td>
+        <td>${row.roi}</td>
+        <td>${row.channel}</td>
+        <td>${row.type}</td>
+    `;
+    tableBody.appendChild(tr);
+    });
+
+    // Chart
+    const labels = data.map(d => d.campaign_name);
+    const profits = data.map(d => d.net_profit);
+
+    const chartData = {
+    labels,
+    datasets: [{
+        label: 'Net Profit',
+        data: profits,
+        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+    }]
+    };
+
+    const options = {
+    responsive: true,
+    plugins: {
+        title: {
+        display: true,
+        text: `Top 5 Campaigns - ${selectedQuarter}`
+        }
+    },
+    scales: {
+        y: {
+            beginAtZero: false, // ❌ disable forcing zero as min
+            ticks: {
+                callback: function(value) {
+                    return value < 0 ? `−$${Math.abs(value)}` : `$${value}`;
+                }
+            }
+        }
+        }
+    };
+
+    if (chartTopCampaigns) chartTopCampaigns.destroy();
+    chartTopCampaigns = new Chart(ctxTopCampaigns, {
+    type: 'bar',
+    data: chartData,
+    options
+    });
+}
+
+selector.addEventListener('change', updateTopCampaignsView);
+updateTopCampaignsView();
+
+  // Worst performing campaigns by quarter:
+const worstCampaignsByQuarter = {{ worst_campaigns_by_quarter | tojson }};
+const worstSelector = document.getElementById('quarterWorstSelector');
+const worstTableBody = document.querySelector('#worstCampaignsTable tbody');
+const ctxWorstCampaigns = document.getElementById('worstCampaignsChart').getContext('2d');
+
+let chartWorstCampaigns;
+
+function updateWorstCampaignsView() {
+    const selectedQuarter = worstSelector.value;
+    const data = worstCampaignsByQuarter[selectedQuarter] || [];
+
+    // Table
+    worstTableBody.innerHTML = '';
+    data.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${row.campaign_name}</td>
+        <td>${row.net_profit}</td>
+        <td>${row.roi}</td>
+        <td>${row.channel}</td>
+        <td>${row.type}</td>
+    `;
+    worstTableBody.appendChild(tr);
+    });
+
+    // Chart
+    const labels = data.map(d => d.campaign_name);
+    const profits = data.map(d => d.net_profit);
+
+    const chartData = {
+    labels,
+    datasets: [{
+        label: 'Net Profit',
+        data: profits,
+        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+    }]
+    };
+
+    const options = {
+    responsive: true,
+    plugins: {
+        title: {
+        display: true,
+        text: `Bottom 5 Campaigns - ${selectedQuarter}`
+        }
+    },
+    scales: {
+        y: {
+        beginAtZero: true
+        }
+    }
+    };
+
+    if (chartWorstCampaigns) chartWorstCampaigns.destroy();
+    chartWorstCampaigns = new Chart(ctxWorstCampaigns, {
+    type: 'bar',
+    data: chartData,
+    options
+    });
+}
+
+worstSelector.addEventListener('change', updateWorstCampaignsView);
+updateWorstCampaignsView();
+
+
+  //Campaign duration vs ROI:
+const durationRoiData = {{ duration_vs_roi | tojson }};
+const ctxDuration = document.getElementById('durationRoiChart').getContext('2d');
+
+const scatterPoints = durationRoiData.map(d => ({
+    x: d.duration_days,
+    y: d.roi,
+    label: d.campaign_name
+}));
+
+new Chart(ctxDuration, {
+    type: 'scatter',
+    data: {
+    datasets: [{
+        label: 'Campaign ROI by Duration',
+        data: scatterPoints,
+        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+        pointRadius: 5
+    }]
+    },
+    options: {
+    responsive: true,
+    plugins: {
+        title: {
+        display: true,
+        text: 'Does Campaign Duration Affect ROI?'
+        },
+        tooltip: {
+        callbacks: {
+            label: function(context) {
+            const d = context.raw;
+            return `${d.label} → ${d.x} days, ROI: ${d.y}`;
+            }
+        }
+        }
+    },
+    scales: {
+        x: {
+        title: { display: true, text: 'Campaign Duration (Days)' }
+        },
+        y: {
+        title: { display: true, text: 'ROI' },
+        beginAtZero: true
+        }
+    }
+    }
+});
+
+  //Channel performance by audience type:
+const audienceChannelData = {{ audience_channel_roi | tojson }};
+
+  // Build distinct audience types and channels
+const audiences = [...new Set(audienceChannelData.map(d => d.target_audience))];
+const channels = [...new Set(audienceChannelData.map(d => d.channel))];
+
+const datasets = audiences.map((aud, i) => {
+    return {
+    label: aud || 'Unknown',
+    data: channels.map(channel => {
+        const match = audienceChannelData.find(d => d.channel === channel && d.target_audience === aud);
+        return match ? match.roi : 0;
+    }),
+    backgroundColor: `rgba(${50 + i*60}, ${99 + i*30}, ${200 - i*30}, 0.6)`
+    };
+});
+
+new Chart(document.getElementById('audienceChannelChart'), {
+    type: 'bar',
+    data: {
+    labels: channels,
+    datasets: datasets
+    },
+    options: {
+    responsive: true,
+    plugins: {
+        title: {
+        display: true,
+        text: 'Average ROI by Channel and Audience Type'
+        },
+        tooltip: {
+        callbacks: {
+            label: function(context) {
+            return `${context.dataset.label}: ROI ${context.raw}`;
+            }
+        }
+        }
+    },
+    scales: {
+        y: {
+        beginAtZero: true,
+        title: { display: true, text: 'Average ROI' }
+        }
+    }
+    }
+});
+
+const seasonalChannelData = {{ seasonality_by_channel | tojson }};
+  const selectorSeasonal = document.getElementById('channelSeasonSelect');
+  const ctxSeasonChart = document.getElementById('channelSeasonChart').getContext('2d');
+  let channelSeasonChart;
+
+  function updateChannelSeasonChart() {
+    const selectedChannel = selectorSeasonal.value;
+    const filtered = seasonalChannelData.filter(d => d.channel === selectedChannel);
+    const labels = filtered.map(d => d.quarter);
+    const roiData = filtered.map(d => d.roi);
+    const profitData = filtered.map(d => d.net_profit);
+
+    const chartData = {
+      labels,
+      datasets: [
+        {
+          label: 'Avg ROI',
+          data: roiData,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        },
+        {
+          label: 'Avg Net Profit',
+          data: profitData,
+          backgroundColor: 'rgba(255, 159, 64, 0.6)'
+        }
+      ]
+    };
+
+    const options = {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: `Seasonal Performance – ${selectedChannel}`
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Value ($ or Ratio)'
+          }
+        }
+      }
+    };
+
+    if (channelSeasonChart) channelSeasonChart.destroy();
+    channelSeasonChart = new Chart(ctxSeasonChart, {
+      type: 'bar',
+      data: chartData,
+      options
+    });
+  }
+
+  selectorSeasonal.addEventListener('change', updateChannelSeasonChart);
+  updateChannelSeasonChart();
+
+</script>
+
+
 {% endblock %}
